@@ -55,6 +55,10 @@ namespace PersonSerialize
                 int serialnumber;
                 string temp = fileToDeserialize.Name.Substring(6, 2);
                 bool result = int.TryParse(temp, out serialnumber);
+                //if(result == false)
+                //{
+                //    throw ParseFailedException();
+                //}
                 deserializedObj.SerialNumber = serialnumber;
             }
             catch (SerializationException e)

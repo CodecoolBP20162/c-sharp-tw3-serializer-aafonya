@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
-using System.IO;
 
-namespace PersonSerialize 
+namespace PersonSerialize
 {
     [Serializable]
     class Person 
@@ -16,10 +10,11 @@ namespace PersonSerialize
 
         public string Address { get; protected set; }
 
-        public string PhoneNumber { get; protected set; }
+        public string PhoneNumber { get; protected set; }       
 
         [NonSerialized] public int SerialNumber;
 
+        /*[OptionalField]*/  public DateTime DateOfCollection { get; protected set; }
 
         public Person()
         {
@@ -32,6 +27,7 @@ namespace PersonSerialize
             Address = address;
             PhoneNumber = phoneNumber;
             SerialNumber = serialnumber;
+            DateOfCollection = DateTime.Now;
         }        
 
         public override string ToString()

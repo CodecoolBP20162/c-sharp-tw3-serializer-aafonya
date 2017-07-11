@@ -25,8 +25,12 @@ namespace PersonSerialize
         public static Person ProcessingDeserialization(int index)
         {    
             string actualItem = personList[index].ToString();
-
             FileInfo fileinfo = new FileInfo(actualItem);
+            if (fileinfo == null)
+            {
+                throw new NullReferenceException();
+            }
+            
             Person deserializedObject = Serialize.Deserialize(fileinfo);
             
             return deserializedObject;
@@ -47,5 +51,48 @@ namespace PersonSerialize
                 }               
             }
         }
+
+        //public static Person SearchingNotDeletedFile(int index, string direction)
+        //{
+        //    Person deserializedPerson;
+        //    bool getPersonData = false;
+        //    if (direction.Equals("previous"))
+        //    {
+        //        while(getPersonData != false || index > 0)
+        //        {
+        //            try
+        //            {
+        //                deserializedPerson = ProcessingDeserialization(index);
+        //                index--;
+        //                getPersonData = true;
+        //                return deserializedPerson;
+        //            }
+
+        //            catch (Exception e)
+        //            {
+        //                Console.WriteLine(" Exception caught.");
+                        
+        //            }
+        //        }
+        //    } else if (direction.Equals("previous"))
+        //    {
+        //        while (getPersonData != false || index < personList.Count)
+        //        {
+        //            try
+        //            {
+        //                deserializedPerson = ProcessingDeserialization(index);
+        //                index++;
+        //                getPersonData = true;
+        //                return deserializedPerson;
+        //            }
+
+        //            catch (Exception e)
+        //            {
+        //                Console.WriteLine(" Exception caught.");
+        //                                    }
+        //        }
+                
+            
+        //}
     }
 }
