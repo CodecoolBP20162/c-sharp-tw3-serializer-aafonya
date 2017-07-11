@@ -22,18 +22,21 @@ namespace PersonSerialize
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            if(PersonDataManager.personList.Count > 0)
+            PersonDataManager.FullFillPersonlistByLoadForm();
+
+            if (PersonDataManager.personList.Count > 0)
             {
-                Person deserializedPerson = PersonDataManager.ProcessingDeserialization(1);
+                Person deserializedPerson = PersonDataManager.ProcessingDeserialization(0);
                 NametextBox.Text = deserializedPerson.Name;
                 AddresstextBox.Text = deserializedPerson.Address;
                 PhoneNumbertextBox.Text = deserializedPerson.PhoneNumber;
 
                 CounterLabel.Text = String.Format("You can see the {0}. persons data.", 1);
                 SumLabel.Text = String.Format("You already have serialize {0} persons data.", PersonDataManager.personList.Count);
-            }
-
-            MessageBox.Show("You haven't serialze any data yet.");
+            } else
+            {
+                MessageBox.Show("You haven't serialze any data yet.");
+            }           
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -55,9 +58,11 @@ namespace PersonSerialize
             AddresstextBox.Text = deserializedPerson.Address;
             PhoneNumbertextBox.Text = deserializedPerson.PhoneNumber;
 
+            SerialNumberLabel.Text = deserializedPerson.SerialNumber.ToString();
             CounterLabel.Text = String.Format("You can see the {0}. persons data.", index + 1);
             SumLabel.Text = String.Format("You already have serialize {0} persons data.", PersonDataManager.personList.Count);
             IndexOfShowedPerson = index;
+
         }
 
         private void PreviousbButton_Click(object sender, EventArgs e)
@@ -74,6 +79,7 @@ namespace PersonSerialize
                 AddresstextBox.Text = deserializedPerson.Address;
                 PhoneNumbertextBox.Text = deserializedPerson.PhoneNumber;
 
+                SerialNumberLabel.Text = deserializedPerson.SerialNumber.ToString();
                 CounterLabel.Text = String.Format("You can see the {0}. persons data.", index + 1);
                 SumLabel.Text = String.Format("You already have serialize {0} persons data.", PersonDataManager.personList.Count);
             }
@@ -95,6 +101,7 @@ namespace PersonSerialize
                 AddresstextBox.Text = deserializedPerson.Address;
                 PhoneNumbertextBox.Text = deserializedPerson.PhoneNumber;
 
+                SerialNumberLabel.Text = deserializedPerson.SerialNumber.ToString();
                 CounterLabel.Text = String.Format("You can see the {0}. persons data.", index + 1);
                 SumLabel.Text = String.Format("You already have serialize {0} persons data.", PersonDataManager.personList.Count);
             }

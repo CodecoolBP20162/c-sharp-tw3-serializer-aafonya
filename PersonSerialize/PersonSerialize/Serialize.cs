@@ -18,7 +18,18 @@ namespace PersonSerialize
             // Create and use a BinaryFormatter object to perform the serialization 
             // Close the file
             Random rnd = new Random(1000000);
-            string formattedFileName = person.Name + rnd + ".bin";
+
+            string serialNumberFormatted;
+
+            if (person.SerialNumber <= 9)
+            {
+                serialNumberFormatted = String.Format("0{0}", person.SerialNumber);
+            } else
+            {
+                serialNumberFormatted = person.SerialNumber.ToString();
+            }
+
+            string formattedFileName = "person" + serialNumberFormatted +  person.Name + rnd.Next() + ".dat";
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream(formattedFileName, FileMode.Create, FileAccess.Write, FileShare.None);
             formatter.Serialize(stream, person);
@@ -27,13 +38,13 @@ namespace PersonSerialize
             return formattedFileName;
         }
 
-        public static Person Deserialize(string fileToDeserialize)
+        public static Person Deserialize(FileInfo fileToDeserialize)
         {
             // Declare the object reference.
             Person deserializedObj;
-
+            
             // Open the file containing the data that want to deserialize.
-            FileStream fs = new FileStream(fileToDeserialize, FileMode.Open);
+            FileStream fs = new FileStream(fileToDeserialize.FullName, FileMode.Open);
             try
             {
                 BinaryFormatter formatter = new BinaryFormatter();
@@ -41,7 +52,10 @@ namespace PersonSerialize
                 // Deserialize the object from the file and 
                 // assign the reference to the local variable.
                 deserializedObj = (Person)formatter.Deserialize(fs);
-                PersonDataManager.deserializedPersonList.Add(deserializedObj, null);
+                int serialnumber;
+                string temp = fileToDeserialize.Name.Substring(6, 2);
+                bool result = int.TryParse(temp, out serialnumber);
+                deserializedObj.SerialNumber = serialnumber;
             }
             catch (SerializationException e)
             {

@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
+using System.IO;
 
-namespace PersonSerialize
+namespace PersonSerialize 
 {
     [Serializable]
-    class Person
+    class Person 
     {
         public string Name { get; protected set; }
 
@@ -15,26 +18,27 @@ namespace PersonSerialize
 
         public string PhoneNumber { get; protected set; }
 
-        public int SerialNumber { get; protected set; }
+        [NonSerialized] public int SerialNumber;
 
-        private static int CounterForSerialNumber;
 
         public Person()
         {
 
         }
 
-        public Person(string name, string address, string phoneNumber)
+        public Person(string name, string address, string phoneNumber, int serialnumber)
         {
             Name = name;
             Address = address;
             PhoneNumber = phoneNumber;
-            SerialNumber = CounterForSerialNumber++;
+            SerialNumber = serialnumber;
         }        
 
         public override string ToString()
         {
             return string.Format("This instance of my object has the following: Name = {0}, Address = {1}, Phone Number = {2}, Serial Number = {3}", Name, Address, PhoneNumber, SerialNumber);
         }
+
+        
     }
 }

@@ -39,6 +39,8 @@
             this.PhoneNumberLabel = new System.Windows.Forms.Label();
             this.CounterLabel = new System.Windows.Forms.Label();
             this.SumLabel = new System.Windows.Forms.Label();
+            this.SerialNumberLabel = new System.Windows.Forms.Label();
+            this.testLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // NametextBox
@@ -137,11 +139,31 @@
             this.SumLabel.TabIndex = 10;
             this.SumLabel.Text = "label1";
             // 
+            // SerialNumberLabel
+            // 
+            this.SerialNumberLabel.AutoSize = true;
+            this.SerialNumberLabel.Location = new System.Drawing.Point(145, 71);
+            this.SerialNumberLabel.Name = "SerialNumberLabel";
+            this.SerialNumberLabel.Size = new System.Drawing.Size(35, 13);
+            this.SerialNumberLabel.TabIndex = 11;
+            this.SerialNumberLabel.Text = "label1";
+            // 
+            // testLabel
+            // 
+            this.testLabel.AutoSize = true;
+            this.testLabel.Location = new System.Drawing.Point(309, 162);
+            this.testLabel.Name = "testLabel";
+            this.testLabel.Size = new System.Drawing.Size(35, 13);
+            this.testLabel.TabIndex = 12;
+            this.testLabel.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(420, 261);
+            this.Controls.Add(this.testLabel);
+            this.Controls.Add(this.SerialNumberLabel);
             this.Controls.Add(this.SumLabel);
             this.Controls.Add(this.CounterLabel);
             this.Controls.Add(this.PhoneNumberLabel);
@@ -174,6 +196,8 @@
         private System.Windows.Forms.Label PhoneNumberLabel;
         private System.Windows.Forms.Label CounterLabel;
         private System.Windows.Forms.Label SumLabel;
+        private System.Windows.Forms.Label SerialNumberLabel;
+        private System.Windows.Forms.Label testLabel;
     }
 }
 
